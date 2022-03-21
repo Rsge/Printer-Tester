@@ -20,7 +20,7 @@
     End Sub
 
     ''' <summary>
-    ''' On loading the form, populate printer list.
+    ''' On loading the form, populates printer list.
     ''' </summary>
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
@@ -36,7 +36,7 @@
     End Sub
 
     ''' <summary>
-    ''' On change of slected item, change the settings accordingly.
+    ''' On change of slected item, changes the settings accordingly.
     ''' </summary>
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
@@ -48,7 +48,7 @@
     End Sub
 
     ''' <summary>
-    ''' On clicking the print button, send InputTxt's content to printer.
+    ''' On clicking the print button, sends InputTxt's content to printer.
     ''' </summary>
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
@@ -69,7 +69,7 @@
     End Sub
 
     ''' <summary>
-    ''' On clicking the refresh button, refresh printer list.
+    ''' On clicking the refresh button, refreshes printer list.
     ''' </summary>
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>

@@ -2,7 +2,7 @@
     ''' <summary>
     ''' Label for print job in print queue.
     ''' </summary>
-    Private Shared ReadOnly PrintJobLabel As String = "Test Print"
+    Private Shared ReadOnly _printJobLabel As String = "Test Print"
 
     ''' <summary>
     ''' Creates list of printers in PrinterList.
@@ -53,7 +53,7 @@
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
     Private Sub PrintButton_Click(sender As Object, e As EventArgs) Handles PrintButton.Click
-        SendStringToPrinter(PrinterList.SelectedItem, InputTxt.Text, PrintJobLabel)
+        SendStringToPrinter(PrinterList.SelectedItem, InputTxt.Text, _printJobLabel)
         'Dim path As New ManagementPath With {
         '    .Server = ".",
         '    .NamespacePath = "root\CIMV2"
@@ -74,8 +74,8 @@
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
     Private Sub RefreshButton_Click(sender As Object, e As EventArgs) Handles RefreshButton.Click
-        Dim Printer As String = PrinterList.SelectedItem
+        Dim printer As String = PrinterList.SelectedItem
         PrinterList.Items.Clear()
-        ListPrinters(Printer)
+        ListPrinters(printer)
     End Sub
 End Class

@@ -1,10 +1,11 @@
 ﻿Imports System.Runtime.InteropServices
 
+'Stuff needed for printing
 ''' <summary>
 ''' Allows for printing raw information to printer.
 ''' </summary>
 Module RawPrinter
-    ' Structure and API declarions:
+    'Structure and API declarions
     <StructLayout(LayoutKind.Sequential, CharSet:=CharSet.Unicode)>
     Structure DOCINFOW
         <MarshalAs(UnmanagedType.LPWStr)> Public pDocName As String
@@ -12,6 +13,7 @@ Module RawPrinter
         <MarshalAs(UnmanagedType.LPWStr)> Public pDataType As String
     End Structure
 
+    'DLL imports
     <DllImport("winspool.Drv", EntryPoint:="OpenPrinterW",
    SetLastError:=True, CharSet:=CharSet.Unicode,
    ExactSpelling:=True, CallingConvention:=CallingConvention.StdCall)>
@@ -48,6 +50,7 @@ Module RawPrinter
     Private Function WritePrinter(hPrinter As IntPtr, pBytes As IntPtr, dwCount As Integer, ByRef dwWritten As Integer) As Boolean
     End Function
 
+    'Actually sending stuff to printer
     ''' <summary>
     ''' Sends bytes to the printer spooler.
     ''' </summary>
@@ -57,24 +60,29 @@ Module RawPrinter
     ''' <param name="filename">Name for job in print queue.</param>
     ''' <returns><c>True</c> if successful, <c>False</c> otherwise.</returns>
     Public Function SendBytesToPrinter(szPrinterName As String, pBytes As IntPtr, dwCount As Integer, filename As String) As Boolean
-        Dim hPrinter As IntPtr      ' The printer handle.
-        Dim dwError As Integer      ' Last error - in case there was trouble.
-        Dim di As DOCINFOW          ' Describes your document (name, port, data type).
-        Dim dwWritten As Integer    ' The number of bytes written by WritePrinter().
-        Dim bSuccess As Boolean     ' Your success code.
+        'Printer handle
+        Dim hPrinter As IntPtr
+        'Last error - in case there was trouble
+        Dim dwError As Integer
+        'Document description (name, port, data type)
+        Dim di As DOCINFOW
+        'Number of bytes written by WritePrinter()
+        Dim dwWritten As Integer
+        'Success code
+        Dim bSuccess As Boolean
 
-        ' Set up the DOCINFO structure.
+        'Setting up the DOCINFO structure
         di = New DOCINFOW
         With di
             .pDocName = filename
             .pDataType = "RAW"
         End With
-        ' Assume failure unless you specifically succeed.
+        'Assuming failure unless specifically succeeded
         bSuccess = False
         If OpenPrinter(szPrinterName, hPrinter, 0) Then
             If StartDocPrinter(hPrinter, 1, di) Then
                 If StartPagePrinter(hPrinter) Then
-                    ' Write your printer-specific bytes to the printer.
+                    'Write your printer-specific bytes to the printer
                     bSuccess = WritePrinter(hPrinter, pBytes, dwCount, dwWritten)
                     EndPagePrinter(hPrinter)
                 End If
@@ -82,14 +90,12 @@ Module RawPrinter
             End If
             ClosePrinter(hPrinter)
         End If
-        ' If you did not succeed, GetLastError may give more information
-        ' about why not.
+        'If not succeeded, GetLastError may give information about why
         If bSuccess = False Then
             dwError = Marshal.GetLastWin32Error()
         End If
         Return bSuccess
     End Function
-
     ''' <summary>
     ''' Sends string to printer as raw bytes.
     ''' </summary>
@@ -99,12 +105,10 @@ Module RawPrinter
     Public Sub SendStringToPrinter(szPrinterName As String, szString As String, filename As String)
         Dim pBytes As IntPtr
         Dim dwCount As Integer
-        ' How many characters are in the string?
         dwCount = szString.Length()
-        ' Assume that the printer is expecting ANSI text, and then convert
-        ' the string to ANSI text.
+        'Assuming the printer is expecting ANSI text, and converting the string to ANSI text
         pBytes = Marshal.StringToCoTaskMemAnsi(szString)
-        ' Send the converted ANSI string to the printer.
+        'Sending converted ANSI string to printer
         SendBytesToPrinter(szPrinterName, pBytes, dwCount, filename)
         Marshal.FreeCoTaskMem(pBytes)
     End Sub

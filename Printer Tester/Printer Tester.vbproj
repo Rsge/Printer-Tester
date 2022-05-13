@@ -9,8 +9,8 @@
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>Resources\Printer.ico</ApplicationIcon>
     <Version>1.0.0.3</Version>
-    <Authors>JG (Rsge)</Authors>
-    <Company>Hanns G. Werner GmbH</Company>
+    <Authors>Jan G. (Rsge)</Authors>
+    <Company>Hanns G. Werner GmbH + Co. KG</Company>
     <RepositoryUrl>https://github.com/Rsge/Printer-Tester</RepositoryUrl>
     <Copyright>GPL-3.0</Copyright>
     <RepositoryType>git</RepositoryType>

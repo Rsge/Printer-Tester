@@ -36,7 +36,7 @@
     End Sub
 
     ''' <summary>
-    ''' On change of slected item, changes the settings accordingly.
+    ''' On change of selected item, changes the settings accordingly.
     ''' </summary>
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>

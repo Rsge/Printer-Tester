@@ -1,4 +1,7 @@
-﻿Public Class MainForm
+﻿''' <summary>
+''' Provides printer selection and a text field to input what to print.
+''' </summary>
+Public Class MainForm
     ''' <summary>
     ''' Label for print job in print queue.
     ''' </summary>

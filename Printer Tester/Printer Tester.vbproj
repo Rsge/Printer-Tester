@@ -7,19 +7,19 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-    <ApplicationIcon>Resources\Printer.ico</ApplicationIcon>
-    <Authors>Jan G. (Rsge)</Authors>
-    <Company>Hanns G. Werner GmbH + Co. KG</Company>
-    <RepositoryUrl>https://github.com/Rsge/Printer-Tester</RepositoryUrl>
-    <Copyright>Copyright © Jan G. 2022</Copyright>
-    <RepositoryType>git</RepositoryType>
-    <Description>A small app to test if a printer, e.g. for labels, is working, using just a simple string.</Description>
-    <PackageLicenseFile></PackageLicenseFile>
-    <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
-    <PackageIcon></PackageIcon>
-    <PackageIconUrl />
-    <Version>1.1.0</Version>
+	<Title>Printer Tester</Title>
+	<Description>A small app to test if a printer, e.g. for labels, is working, using just a simple string.</Description>
+	<Version>1.1.0</Version>
     <FileVersion>1.1.0.1</FileVersion>
+	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<Authors>Jan G. (Rsge)</Authors>
+    <Company>Hanns G. Werner GmbH + Co. KG</Company>
+    <Copyright>Copyright © Jan G. 2022</Copyright>
+	<PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/Rsge/Printer-Tester</RepositoryUrl>
+	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+	<ApplicationIcon>Resources\Printer.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

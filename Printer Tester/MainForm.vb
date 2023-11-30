@@ -3,11 +3,6 @@
 ''' </summary>
 Public Class MainForm
     ''' <summary>
-    ''' Label for print job in print queue.
-    ''' </summary>
-    Private Shared ReadOnly _printJobLabel As String = "Test Print"
-
-    ''' <summary>
     ''' Creates list of printers in PrinterList.
     ''' </summary>
     ''' <param name="printer">Name of printer to select.</param>
@@ -15,10 +10,10 @@ Public Class MainForm
         For Each printer In Printing.PrinterSettings.InstalledPrinters
             PrinterList.Items.Add(printer)
         Next
-        If String.IsNullOrEmpty(printer) Then
-            PrinterList.SelectedIndex = 0
-        Else
+        If Not String.IsNullOrEmpty(printer) AndAlso PrinterList.Items.Contains(printer) Then
             PrinterList.SelectedItem = printer
+        Else
+            PrinterList.SelectedIndex = 0
         End If
     End Sub
 
@@ -45,7 +40,7 @@ Public Class MainForm
     ''' <param name="e">Triggering event.</param>
     Private Sub PrinterList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PrinterList.SelectedIndexChanged
         With My.Settings
-            .Printer = PrinterList.SelectedItem
+            .Printer = PrinterList.SelectedItem.ToString()
             .Save()
         End With
     End Sub
@@ -56,7 +51,7 @@ Public Class MainForm
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
     Private Sub PrintButton_Click(sender As Object, e As EventArgs) Handles PrintButton.Click
-        SendStringToPrinter(PrinterList.SelectedItem, InputTxt.Text, _printJobLabel)
+        SendStringToPrinter(PrinterList.SelectedItem.ToString(), InputTxt.Text, My.Resources.LabelPrintJob)
         'Dim path As New ManagementPath With {
         '    .Server = ".",
         '    .NamespacePath = "root\CIMV2"
@@ -77,7 +72,7 @@ Public Class MainForm
     ''' <param name="sender">Event sender.</param>
     ''' <param name="e">Triggering event.</param>
     Private Sub RefreshButton_Click(sender As Object, e As EventArgs) Handles RefreshButton.Click
-        Dim printer As String = PrinterList.SelectedItem
+        Dim printer As String = PrinterList.SelectedItem.ToString()
         PrinterList.Items.Clear()
         ListPrinters(printer)
     End Sub
